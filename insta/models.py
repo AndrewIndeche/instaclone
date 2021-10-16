@@ -1,7 +1,10 @@
 from django.db import models
+from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+# Create your models here.
+
 
 class Profile(models.Model):
     '''
@@ -70,8 +73,8 @@ class Comment(models.Model):
     def __str__(self):
         return f'Comment by {self.name}'
 
-class Post(models.Model):
-    image = models.ImageField(upload_to='posts/')
+class Image(models.Model):
+    post = models.ImageField(upload_to='posts/')
     name = models.CharField(max_length=250, blank=True)
     caption = models.CharField(max_length=250, blank=True)
     likes = models.ManyToManyField(User, related_name='likes', blank=True, )

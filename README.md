@@ -1,10 +1,10 @@
 # Gallery App
 
-The project folder contains a Django App that displays a personal photo gallery of favorite pictures.The App enables users to upload and share photos.
+The project folder contains a Django App that is a clone of Instagram that enables functions such as sign-up,log-in,Profile Update,viewing images and liking posts
 
 ## Getting Started
 
-To get a copy of the project up and running on your local machine for development and testing purposes. 
+To get a copy of the project up and running on your local machine for development and testing purposes.
 -clone the project from Github on terminal
 -Create a virtual environment for your folder
 -See deployment for notes on how to deploy the project on a live system.

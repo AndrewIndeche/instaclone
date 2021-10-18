@@ -19,7 +19,7 @@ class TestProfile(TestCase):
         after = Profile.objects.all()
         self.assertTrue(len(after) > 0)
 
-class TestPost(TestCase):
+class TestImage(TestCase):
     def setUp(self):
         self.profile_test = Profile(name='Andrew', user=User(username='Indeche'))
         self.profile_test.save()

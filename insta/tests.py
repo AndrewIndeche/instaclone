@@ -1,14 +1,14 @@
 from django.test import TestCase
-from .models import Profile,Post
+from .models import Profile,Image
 from django.contrib.auth.models import User
 
 # Create your tests here.
 class TestProfile(TestCase):
     def setUp(self):
-        self.user = User(username='charles')
+        self.user = User(username='Andrew')
         self.user.save()
 
-        self.profile_test = Profile(id=1, name='image', profile_picture='default.jpg', bio='this is a test profile',
+        self.profile_test = Profile(id=1, name='image', profile_picture='images/404.jpg', bio='this is a test profile',
                                     user=self.user)
 
     def test_instance(self):
@@ -20,21 +20,26 @@ class TestProfile(TestCase):
         self.assertTrue(len(after) > 0)
 
 class TestImage(TestCase):
+    ''' test class for image model '''
     def setUp(self):
-        self.profile_test = Profile(name='Andrew', user=User(username='Indeche'))
-        self.profile_test.save()
+        ''' method called before each test case'''
+        self.test_user = User(username='Andrew', password='786')
+        self.test_user.save()
+        self.test_profile = self.test_user.profile
+        self.test_profile.save()
 
-        self.image_test = Post(image='default.jpg', name='test', caption='default test', user=self.profile_test)
+        self.test_image = Image(image='images/404.jpg', caption='some text', profile=self.test_profile, created_on=datetime.now())
 
-    def test_insatance(self):
-        self.assertTrue(isinstance(self.image_test, Post))
+    def test_instance(self):
+        ''' test method to ensure image instance creation '''
+        self.assertTrue(isinstance(self.test_image, Image))
 
-    def test_save_image(self):
-        self.image_test.save_image()
-        images = Post.objects.all()
-        self.assertTrue(len(images) > 0)
+    def test_save(self):
+        ''' test method to save image instance to db '''
+        self.test_image.save_image()
+        self.assertEqual(len(Image.objects.all()), 1)
 
-    def test_delete_image(self):
-        self.image_test.delete_image()
-        after = Profile.objects.all()
-        self.assertTrue(len(after) < 1)
+    def tearDown(self):
+        ''' method to clear all setup instances after each test run '''
+        self.test_user.delete() #deletes it's profile too
+        Image.objects.all().delete()

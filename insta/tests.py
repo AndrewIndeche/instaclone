@@ -1,6 +1,8 @@
 from django.test import TestCase
 from .models import Profile,Image
 from django.contrib.auth.models import User
+import datetime
+
 
 # Create your tests here.
 class TestProfile(TestCase):
@@ -28,7 +30,7 @@ class TestImage(TestCase):
         self.test_profile = self.test_user.profile
         self.test_profile.save()
 
-        self.test_image = Image(image='images/404.jpg', caption='some text', profile=self.test_profile, created_on=datetime.now())
+        self.test_image = Image(post='images/404.jpg', caption='some text')
 
     def test_instance(self):
         ''' test method to ensure image instance creation '''

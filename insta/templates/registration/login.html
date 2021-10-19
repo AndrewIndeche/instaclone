@@ -4,6 +4,11 @@
 <head>
   </head>
 <body>
-  
+  <form action="/accounts/login/" method="post">
+      {% csrf_token %} {% for field in form %}
+      <input id="{{ field.id_for_label }}" placeholder="{{field.name}}" type="text" name="{{ field.html_name }}"> {{ field.errors }} {% endfor %}
+      <input type="submit" value="Log In" /><br>
+      <input type="hidden" name="next" value="{{next}}">
+  </form>
   </body>
-    </html>
+</html>

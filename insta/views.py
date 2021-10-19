@@ -3,6 +3,7 @@ from django.http  import HttpResponse
 from django.contrib.auth import login, authenticate
 from .models import Image, Profile, Comment, Follow
 from django.contrib.auth.decorators import login_required
+from .forms import SignUpForm
 
 # Create your views here.
 

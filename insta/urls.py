@@ -1,14 +1,18 @@
-from django.urls import path, include
+from django.shortcuts import render
 from . import views
+from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('signup/', views.signup, name='signup'),
-    path('account/', include('django.contrib.auth.urls')),
-    path('', views.index, name='index'),
-    path('profile/<username>/', views.profile, name='profile'),
-    path('post/<id>', views.post_comment, name='comment'),
-    path('like', views.like_post, name='like_post'),
-    path('search/', views.search_profile, name='search'),
-    path('unfollow/<to_unfollow>', views.unfollow, name='unfollow'),
-    path('follow/<to_follow>', views.follow, name='follow')
+
+    url(r'^$',views.signup,name = 'signup'),
+    url(r'^profile/$', views.profile, name='profile'),
+    url(r'new/image$', views.new_image, name='new_image'),
+    url(r'comments/(\d+)/', views.comments, name='comments'),
+    url(r'like/(\d+)/$',views.like_post, name='like' ),
+
 ]
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

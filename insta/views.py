@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http  import HttpResponse
+from django.contrib.auth import login, authenticate
 from .models import Image, Profile, Comment, Follow
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)

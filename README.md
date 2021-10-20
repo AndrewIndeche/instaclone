@@ -27,11 +27,11 @@ Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
 
-Use (virtual) $ python3 manage.py test picha command to run tests
+Use (virtual) $ python3 manage.py test insta command to run tests
 
 ### And coding style tests
 
-The tests will test the Image, Location and Category classes for errors
+The tests will test the Profile,Follow,Comment,Image classes for errors
 
 ## Deployment
 
@@ -46,7 +46,7 @@ Deployment has been done on Heroku using the requirements.txt packages
 
 ## Authors
 
-* **Andrew Indeche** - *Final work* - [Gallery](https://github.com/Gallery)
+* **Andrew Indeche** - *Final work* 
 
 ## License
 

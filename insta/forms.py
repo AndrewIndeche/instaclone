@@ -9,3 +9,8 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+        
+class commentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ['related_post', 'name' , 'created_on']

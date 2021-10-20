@@ -1,11 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<DOCTYPE html>
-<html lang="en">
-<head>
-  </head>
-<body>
 <div class="container">
     <div class="box">
         <div class="heading"></div>
@@ -30,13 +25,24 @@
                     <i class="fa fa-facebook-official fb-icon"></i>
                     <span class="">Log in with Facebook</span>
                 </button>
-                <a class="forgot-password" href="#">Forgot password?</a>
+                <a class="forgot-password" href="">Forgot password?</a>
             </div>
         </form>
     </div>
-    <div class="box">
-        <p>Don't have an account? <a class="signup" href="#">Sign Up</a></p>
-    </div>
+<div class="box">
+<p>Don't have an account? <a class="signup" href="{% url 'signup' %}">Sign Up</a></p>
+</div>
+ <p class="text-center mt-4">Get the app</p>
+ <div class="row">
+     <div class="col-md-1"></div>
+     <div class="col-md-5 mb-2">
+         <img src="{% static 'images/logo1.png' %}" alt="" width="100%" class="download">
+     </div>
+     <div class="col-md-5 mb-2">
+         <img src="{% static 'images/logo2.png' %}" alt="" width="100%" class="download">
+     </div>
+     <div class="col-md-1"></div>
+ </div>
 </div>
 </body>
 </html>

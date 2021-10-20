@@ -4,7 +4,8 @@
   <div class="container">
     <div class="row d-flex align-items-center justify-content-center">
       <div style="max-width:380px;">
-        <form action="" class="bg-white border py-4 px-5" method="post" novalidate>
+        <form action="/accounts/signup" class="bg-white border py-4 px-5" method="post" novalidate>
+            {% csrf_token%}
           <div class="text-center mb-3">
           <div class="heading"></div>
             <p class="text-muted fw-bold">
@@ -18,20 +19,19 @@
             </p>
           </div>
           <div class="form-floating mb-2">
-            <input id="form-control" name="email" placeholder="Mobile Number or Email" required="" type="email" /><label>Mobile Number or Email</label>
+            <input id= "email" placeholder="Mobile Number or Email" required="" type="email" /><label>Mobile Number or Email</label>
           </div>
           <div class="form-floating mb-2">
-            <input id="form-control" name="fullname" placeholder="Full Name" required="" type="text" /><label>Full Name</label>
+            <input id="form-control" name="username" placeholder="username" required="" type="text" /><label>Full Name</label>
           </div>
           <div class="form-floating mb-2">
-            <input id="form-control" name="username" placeholder="Username" required="" type="text" /><label>Username</label>
+            <input id="form-control" name="password1" placeholder="password1" required="" type="text" /><label>Username</label>
           </div>
           <div class="form-floating mb-2">
-            <input id="form-control" name="password" placeholder="Password" required="" type="password" /><label>Password</label>
+            <input id="form-control" name="password2" placeholder="password2" required="" type="password" /><label>Password</label>
           </div>
           <div class="mb-2">
-            {% csrf_token%}
-            <button class="login-button" href="" type="submit">Sign Up</button>
+          <button class="login-button" href="" type="submit">Sign Up</button>
           </div>
           <div class="small text-center">
             By signing up, you agree to our Terms , Data Policy and Cookies Policy.

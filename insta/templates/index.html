@@ -1,1 +1,44 @@
-<h1>welcome</h1>
+{% extends 'base.html' %}
+
+<!--  -->
+{% block content %} {{block.super}}
+<main>
+    <section>
+        {% for item in pictures %}
+        <article id="post">
+            <div class="Instagram-card">
+                <div class="Instagram-card-header">
+                    <a href="user/{{item.profile.user.id}}">
+                        <img src="{{item.profile.photo.url}}" class="Instagram-card-user-image ">
+                    </a>
+                    <a class="Instagram-card-user-name" href="user/{{item.profile.user.id}}"> {{item.profile.user}} </a>
+                    <a class="instagram-card-icon left" href="#"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="Instagram-card-image">
+                    <img src="{{item.image.url}}" width="595">
+                </div>
+
+                <div class="Instagram-card-content">
+                    <a class="instagram-card-icon" href="/like/{{item.id}}"><i class="far fa-heart"></i></a>
+                    <a class="instagram-card-icon" href="/comments/{{item.id}}"><i class="far fa-comment"></i></a>
+                    <a class="instagram-card-icon left" href="#"><i class="far fa-bookmark"></i></a>
+                    <p class="Likes">{{item.likes.count}} Likes</p>
+                    <p>
+                        <a class="Instagram-card-content-user" href="#">{{item.profile.user}}</a> {{item.caption}}.
+                    </p>
+                    <a href="/comments/{{item.id}}" class="comments">
+                        {% if number %}
+                        View all {{number}} comments
+                        {% endif %}
+                    </a>
+                    <p class="date">{{item.created_on|timesince}} AGO </p>
+                    <hr>
+                </div>
+
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+</main>
+{% endblock %}

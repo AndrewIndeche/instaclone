@@ -8,7 +8,7 @@
       {% if form.errors %}
       <p> Password or Username is incorrect </p>
       {% endif %}
-        <form class="login-form" form action="/accounts/login" method="post">
+        <form class="login-form" form action="/accounts/login/" method="post">
           {% csrf_token %}
           {% bootstrap_form form%}
           <button class="login-button" button type="submit" title="login" >Log In</button>

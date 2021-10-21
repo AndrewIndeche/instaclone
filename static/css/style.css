@@ -59,23 +59,9 @@ input {
   border-radius: 3px;
   border: 1px solid #efefef;
 }
-
-/* label intial position*/
-
-
-/* hiding placeholder in all browsers */
-
-
-/* hiding  placeholder in mozilla */
 .login-form ::-moz-placeholder {
   color: transparent;
 }
-
-/* label final position */
-
-
-/* input padding increases if placeholder is not shown */
-
 
 .login-button {
   text-align: center;

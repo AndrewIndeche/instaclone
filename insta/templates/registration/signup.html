@@ -24,7 +24,7 @@
           {% csrf_token %}
           {% bootstrap_form form %}
           <div class="mb-2">
-          <button class="login-button" href="" type="submit">Sign Up</button>
+          <button class="login-button" href="/account/signup" type="submit">Sign Up</button>
            <input type="hidden" name="next" value="{{next}}">
           </div>
           <div class="small text-center">

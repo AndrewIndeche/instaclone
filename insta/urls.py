@@ -7,7 +7,7 @@ from django.urls import path,include
 
 urlpatterns = [
 
-    url('signup/', views.signup, name='signup'),
+    url('signup', views.signup, name='signup'),
     url('/', include('django.contrib.auth.urls')),
     url(r'^$',views.index,name = 'index'),
     url(r'^profile/$', views.profile, name='profile'),

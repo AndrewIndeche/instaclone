@@ -8,8 +8,8 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
-        
+        fields = ('email', 'username', 'password1', 'password2')
+
 class commentForm(forms.ModelForm):
     class Meta:
         model = Comment

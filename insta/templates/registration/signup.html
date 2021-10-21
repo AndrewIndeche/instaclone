@@ -1,8 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load bootstrap4 %}
 {% block content %}
 {% load static %}
   <div class="container">
     <div class="row d-flex align-items-center justify-content-center">
+      {% if form.errors %}
+      {{ form.errors }}
+      {% endif %}
       <div style="max-width:380px;">
         <form action="/accounts/signup" class="bg-white border py-4 px-5" method="post" novalidate>
             {% csrf_token%}
@@ -18,20 +21,11 @@
               OR
             </p>
           </div>
-          <div class="form-floating mb-2">
-            <input id= "email" placeholder="Mobile Number or Email" required="" type="email" /><label>Mobile Number or Email</label>
-          </div>
-          <div class="form-floating mb-2">
-            <input id="form-control" name="username" placeholder="username" required="" type="text" /><label>Full Name</label>
-          </div>
-          <div class="form-floating mb-2">
-            <input id="form-control" name="password1" placeholder="password1" required="" type="text" /><label>Username</label>
-          </div>
-          <div class="form-floating mb-2">
-            <input id="form-control" name="password2" placeholder="password2" required="" type="password" /><label>Password</label>
-          </div>
+          {% csrf_token %}
+          {% bootstrap_form form %}
           <div class="mb-2">
           <button class="login-button" href="" type="submit">Sign Up</button>
+           <input type="hidden" name="next" value="{{next}}">
           </div>
           <div class="small text-center">
             By signing up, you agree to our Terms , Data Policy and Cookies Policy.

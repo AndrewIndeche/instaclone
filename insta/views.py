@@ -3,7 +3,7 @@ from django.http  import HttpResponse
 from django.contrib.auth import login, authenticate
 from .models import Image, Profile, Comment, Follow
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm
+from .forms import SignUpForm, UpdateUserForm,UpdateUserProfileForm
 
 # Create your views here.
 
@@ -16,7 +16,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('login')
+            return redirect('index')
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
@@ -28,7 +28,7 @@ def index(request):
     return render(request, 'index.html',{'pictures':pictures, 'number':number})
 
 @login_required(login_url='login')
-def profile(request, username):
+def profile(request):
     images = request.user.profile.posts.all()
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
@@ -47,6 +47,28 @@ def profile(request, username):
 
     }
     return render(request, 'profile.html', params)
+@login_required(login_url='login')
+def user_profile(request, username):
+    user_prof = get_object_or_404(User, username=username)
+    if request.user == user_prof:
+        return redirect('profile', username=request.user.username)
+    user_posts = user_prof.profile.posts.all()
+
+    followers = Follow.objects.filter(followed=user_prof.profile)
+    follow_status = None
+    for follower in followers:
+        if request.user.profile == follower.follower:
+            follow_status = True
+        else:
+            follow_status = False
+    params = {
+        'user_prof': user_prof,
+        'user_posts': user_posts,
+        'followers': followers,
+        'follow_status': follow_status
+    }
+    print(followers)
+    return render(request, 'insta/user_profile.html', params)
 
 @login_required(login_url='/accounts/login/')
 def new_image(request):
@@ -79,7 +101,7 @@ def like_post(request):
         'total_likes': image.total_likes()
     }
     if request.is_ajax():
-        html = render_to_string('instagram/like_section.html', params, request=request)
+        html = render_to_string('insta/like_section.html', params, request=request)
         return JsonResponse({'form': html})
 
 
@@ -94,10 +116,10 @@ def search_profile(request):
             'results': results,
             'message': message
         }
-        return render(request, 'instagram/results.html', params)
+        return render(request, 'insta/results.html', params)
     else:
         message = "You haven't searched for any image category"
-    return render(request, 'instagram/results.html', {'message': message})
+    return render(request, 'insta/results.html', {'message': message})
 
 @login_required(login_url='accounts/login')
 def comments(request, id):

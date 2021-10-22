@@ -3,15 +3,19 @@
 {% load static %}
 <nav class="navbar">
     <div class="nav-wrapper">
-        <img src="/static/images/insta.png" class="brand-img" alt="">
+      <img src="/static/images/insta.png" class="brand-img" alt="">
        <input type="text" class="search-box" placeholder="search">
         <div class="nav-items">
-            <img src="/static/images/ic1.png" class="icon" alt="">
+          <a href="{% url 'index' %}">
+            <img src="/static/images/nyumba.png" class="icon" alt="">
+              </a>
             <img src="/static/images/messe.png" class="icon" alt="">
             <img src="/static/images/newpost.png" class="icon" alt="">
             <img src="/static/images/explore.png"class="icon" alt="">
             <img src="/static/images/like.png" class="icon" alt="">
-            <div class="icon user-profile"></div>
+            <a href="{% url 'profile' %}">
+            <img src="/static/images/profile-pic.png" class="icon" alt="">
+            </a>
         </div>
     </div>
 </nav>

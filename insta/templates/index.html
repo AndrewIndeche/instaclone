@@ -1,5 +1,6 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 {% load static %}
+{% load bootstrap4 %}
 {% block content %} {{block.super}}
 {% include 'navbar.html' %}
 <section class="main">
@@ -7,8 +8,8 @@
         <div class="left-col">
             <div class="status-wrapper">
                 <div class="status-card">
-                    <div class="profile-pic"><img src="{{ user.profile.profile_picture.url }}" alt=""></div>
-                    <p class="username">{{ user.username }}</p>
+                    <div class="profile-pic"><img src="/static/img/profile-pic.png" alt=""></div>
+                    <p class="username">AndrewIndeche</p>
                 </div>
                 <div class="status-card">
                     <div class="profile-pic"><img src="/static/img/gadgetworld.png" alt=""></div>
@@ -62,15 +63,13 @@
                     <button class="comment-btn">post</button>
                 </div>
             </div>
-          </div>
-    </div>
-</section>
+            </div>
 <section class="main">
     <div class="wrapper">
         <div class="right-col">
             <div class="profile-card">
                     <div class="profile-pic">
-                    <img src="/static/img/profile1.jpeg alt="">
+                    <img src="{{ user.profile.profile_picture.url }}"  alt="">
                 </div>
                 <div>
                     <p class="username">{{ user.username }}</p>

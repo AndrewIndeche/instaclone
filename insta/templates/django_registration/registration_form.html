@@ -8,12 +8,11 @@
       {{ form.errors }}
       {% endif %}
       <div style="max-width:380px;">
-        <form action="/accounts/signup" class="bg-white border py-4 px-5" method="post" novalidate>
-            {% csrf_token%}
+        <form action="/accounts/register/" class="bg-white border py-4 px-5" method="post" novalidate>
           <div class="text-center mb-3">
           <div class="heading"></div>
             <p class="text-muted fw-bold">
-              Sign up to see photos and videos from your friends.
+              <h8><strong>Sign up to see photos and videos from your friends.</strong></h8>
             </p>
           </div>
           <div class="mb-3">
@@ -25,7 +24,7 @@
           {% csrf_token %}
           {% bootstrap_form form %}
           <div class="mb-2">
-          <button class="login-button" href="/account/signup" type="submit">Sign Up</button>
+          <button class="login-button" href="/accounts/register/" type="submit">Sign Up</button>
            <input type="hidden" name="next" value="{{next}}">
           </div>
           <div class="small text-center">

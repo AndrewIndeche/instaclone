@@ -122,6 +122,19 @@ a {
   padding: 10px 0;
   flex-grow: 1;
 }
+.or{
+  position: relative;
+}
+.or:before{
+  content: '';
+  height: 1px;
+  background: linear-gradient(to right,silver,silver,rgba(255,255,255,0),rgba(255,255,255,0),silver,silver);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  z-index: 0;
+}
 .login-button {
   text-align: center;
   width: 100%;

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'layout.html' %}
 {% block content %} {{block.super}}
 {% include 'navbar.html' %}
 <header>
@@ -8,18 +8,39 @@
 		<div class="profile">
 
 			<div class="profile-image">
-
-				<img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
-
+    <div class="status-card">
+		<img class="status-card" src="{{ user.profile.profile_picture.url }}">
+      </div>
 			</div>
-
 			<div class="profile-user-settings">
+				<h1 class="profile-user-name">{{ user.username }}</h1>
+				<div class="modal fade bd-example-modal-md" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md ">
+                <div class="modal-content">
+                    <form action="" method="post" novalidate enctype="multipart/form-data" class="py-4 px-5 space-y-20">
+                        {% csrf_token%}
+                        {{ user_form}}
+                        {{ prof_form}}
+                        <button type="submit" class="btn btn-primary btn-sm"> Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+				<button class="btn profile-edit-btn" data-toggle="modal" data-target=".bd-example-modal-md">Edit Profile</button>
+							<button class="btn profile-settings-btn" data-toggle="modal" data-target="#ModalCenter" aria-label="profile settings"><i class="fa fa-cog mt-6" aria-hidden="true"></i></button>
+							<div class="modal fade bd-example-modal-sm" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			            <div class="modal-dialog modal-sm" role="document">
+			                <div class="modal-content">
+			                    <div class="modal-body">
+			                        <hr>
+			                        <a class="D-block mx-auto" href="{% url 'logout' %}">Log Out</a>
+			                        <hr>
+			                        <a class="D-block mx-auto" href="" data-dismiss="modal">Close</a>
+			                    </div>
 
-				<h1 class="profile-user-name">janedoe_</h1>
-
-				<button class="btn profile-edit-btn">Edit Profile</button>
-
-				<button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
+			                </div>
+			            </div>
+			        </div>
 
 			</div>
 
@@ -35,8 +56,8 @@
 
 			<div class="profile-bio">
 
-				<p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p>
-
+				<p><span class="profile-real-name">{{ user.username }}</span><br>
+				{{ user.profile.bio }}</p>
 			</div>
 
 		</div>
@@ -55,7 +76,7 @@
 
 			<div class="gallery-item" tabindex="0">
 
-				<img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="">
+				<img src="/static/img/children.jpg"  class="gallery-image" alt="">
 
 				<div class="gallery-item-info">
 
@@ -70,7 +91,7 @@
 
 			<div class="gallery-item" tabindex="0">
 
-				<img src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop" class="gallery-image" alt="">
+				<img src="/static/img/drake.jpg" class="gallery-image" alt="">
 
 				<div class="gallery-item-info">
 
@@ -85,7 +106,7 @@
 
 			<div class="gallery-item" tabindex="0">
 
-				<img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&h=500&fit=crop" class="gallery-image" alt="">
+				<img src="/static/img/bmw.png" class="gallery-image" alt="">
 
 				<div class="gallery-item-type">
 
@@ -106,7 +127,7 @@
 
 			<div class="gallery-item" tabindex="0">
 
-				<img src="https://images.unsplash.com/photo-1502630859934-b3b41d18206c?w=500&h=500&fit=crop" class="gallery-image" alt="">
+				<img src="/static/img/lt.jpg"  class="gallery-image" alt="">
 
 				<div class="gallery-item-type">
 
@@ -127,7 +148,7 @@
 
 			<div class="gallery-item" tabindex="0">
 
-				<img src="https://images.unsplash.com/photo-1498471731312-b6d2b8280c61?w=500&h=500&fit=crop" class="gallery-image" alt="">
+				<img src="/static/img/car5.jpg"  class="gallery-image" alt="">
 
 				<div class="gallery-item-type">
 
@@ -163,7 +184,7 @@
 
 			<div class="gallery-item" tabindex="0">
 
-				<img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=500&h=500&fit=crop" class="gallery-image" alt="">
+				<img src="/static/img/kn.jpg"  class="gallery-image" alt="">
 
 				<div class="gallery-item-type">
 
@@ -184,7 +205,7 @@
 
 			<div class="gallery-item" tabindex="0">
 
-				<img src="https://images.unsplash.com/photo-1515814472071-4d632dbc5d4a?w=500&h=500&fit=crop" class="gallery-image" alt="">
+				<img src="/static/img/s11.jpg"  class="gallery-image" alt="">
 
 				<div class="gallery-item-info">
 
@@ -199,7 +220,7 @@
 
 			<div class="gallery-item" tabindex="0">
 
-				<img src="https://images.unsplash.com/photo-1511407397940-d57f68e81203?w=500&h=500&fit=crop" class="gallery-image" alt="">
+				<img src="/static/img/s10.jpg"  class="gallery-image" alt="">
 
 				<div class="gallery-item-type">
 
@@ -220,7 +241,7 @@
 
 			<div class="gallery-item" tabindex="0">
 
-				<img src="https://images.unsplash.com/photo-1518481612222-68bbe828ecd1?w=500&h=500&fit=crop" class="gallery-image" alt="">
+				<img src="/static/img/car1.jpg"  class="gallery-image" alt="">
 
 				<div class="gallery-item-info">
 
@@ -235,7 +256,7 @@
 
 			<div class="gallery-item" tabindex="0">
 
-				<img src="https://images.unsplash.com/photo-1505058707965-09a4469a87e4?w=500&h=500&fit=crop" class="gallery-image" alt="">
+				<img src="/static/img/car3.jpeg" class="gallery-image" alt="">
 
 				<div class="gallery-item-info">
 

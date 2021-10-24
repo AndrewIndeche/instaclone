@@ -9,7 +9,7 @@ class Profile(models.Model):
     '''
     model class for User Profile
     '''
-    profile_picture  = models.ImageField(upload_to = 'images/',default='404.jpg')
+    profile_picture  = models.ImageField(upload_to = 'images/',default="")
     name = models.CharField(blank=True,max_length=60)
     bio = models.TextField(blank=True,max_length=500)
     user = models.OneToOneField(User, on_delete=models.CASCADE)

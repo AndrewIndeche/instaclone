@@ -1,25 +1,11 @@
 from django.shortcuts import render,redirect
-from django.http  import HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from .models import Image, Profile, Comment, Follow
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm, UpdateUserForm,UpdateUserProfileForm
+from .forms import  UpdateUserForm,UpdateUserProfileForm,PostForm
 
 # Create your views here.
-
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('index')
-    else:
-        form = SignUpForm()
-    return render(request, 'registration/signup.html', {'form': form})
 
 @login_required(login_url='/accounts/login/')
 def index(request):
@@ -27,7 +13,7 @@ def index(request):
     number = Comment.objects.count()
     return render(request, 'index.html',{'pictures':pictures, 'number':number})
 
-@login_required(login_url='login')
+@login_required(login_url='/accounts/login')
 def profile(request):
     images = request.user.profile.posts.all()
     if request.method == 'POST':
@@ -68,7 +54,7 @@ def user_profile(request, username):
         'follow_status': follow_status
     }
     print(followers)
-    return render(request, 'insta/user_profile.html', params)
+    return render(request, 'user_profile.html', params)
 
 @login_required(login_url='/accounts/login/')
 def new_image(request):
@@ -81,7 +67,7 @@ def new_image(request):
             image.save()
         return redirect('feed')
     else:
-        form = uploadForm()
+        form = PostForm()
     return render(request, 'new_image.html', {'form':form})
 
 def like_post(request):
@@ -101,7 +87,7 @@ def like_post(request):
         'total_likes': image.total_likes()
     }
     if request.is_ajax():
-        html = render_to_string('insta/like_section.html', params, request=request)
+        html = render_to_string('like_section.html', params, request=request)
         return JsonResponse({'form': html})
 
 

@@ -1,4 +1,5 @@
-{% extends 'registration/base.html' %}{% load bootstrap4 %}
+{% extends 'base.html' %}
+{% load bootstrap4 %}
 {% block content %}
 {% load static %}
   <div class="container">
@@ -16,7 +17,7 @@
             </p>
           </div>
           <div class="mb-3">
-            <button class="login-button" href="#"><i class="fa fa-facebook-square"></i> Log in with facebook</button>
+            <button class="button" href="#"><i class="fa fa-facebook-square"></i> Log in with facebook</button>
             <p class="my-3 text-center or">
               OR
             </p>
@@ -33,7 +34,7 @@
         </form>
         <div class="bg-white py-4 px-5 text-center border mt-4">
           <p class="m-0">
-            Have an account? <a href="{% url 'login' %}">Log In</a>
+            Have an account? <a href="/accounts/login"">Log In</a>
           </p>
         </div>
         <p class="text-center mt-4">Get the app</p>

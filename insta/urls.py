@@ -1,9 +1,10 @@
 from . import views
 from django.conf.urls import url
 from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    url('signup/', views.signup, name='signup'),
     url(r'^$',views.index, name = 'index'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^user_profile/(\d+)/$', views.user_profile, name='user_profile'),
@@ -13,3 +14,7 @@ urlpatterns = [
     url('like/<int:image_id>',views.like_post, name='like' ),
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    urlpatterns += staticfiles_urlpatterns()

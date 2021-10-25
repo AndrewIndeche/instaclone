@@ -9,7 +9,7 @@ class Profile(models.Model):
     '''
     model class for User Profile
     '''
-    profile_picture  = models.ImageField(upload_to = 'images/',default="")
+    profile_picture = models.ImageField(upload_to = 'images/',default='alaska.jpg')
     name = models.CharField(blank=True,max_length=60)
     bio = models.TextField(blank=True,max_length=500)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -72,7 +72,7 @@ class Comment(models.Model):
         return f'Comment by {self.name}'
 
 class Image(models.Model):
-    image = models.ImageField(upload_to='posts/')
+    image = models.ImageField(upload_to='posts/',null=True, blank=True)
     name = models.CharField(max_length=250, blank=True)
     caption = models.CharField(max_length=250, blank=True)
     likes = models.ManyToManyField(User, related_name='likes', blank=True, )

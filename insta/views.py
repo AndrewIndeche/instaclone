@@ -10,19 +10,19 @@ from django.contrib.auth.models import User
 
 @login_required(login_url='/accounts/login/')
 def index(request):
-    image = Image.objects.all()
+    images = Image.objects.all()
     users = User.objects.exclude(id=request.user.id)
     if request.method == 'POST':
         form = UploadPicForm(request.POST, request.FILES)
         if form.is_valid():
-            image = form.save(commit=False)
-            image.user = request.user.profile
-            image.save()
+            images = form.save(commit=False)
+            images.user = request.user.profile
+            imagse.save()
             return HttpResponseRedirect(request.path_info)
     else:
         form = UploadPicForm()
     params = {
-        'image': image,
+        'images': images,
         'form': form,
         'users': users,
 

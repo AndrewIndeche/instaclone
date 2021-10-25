@@ -38,12 +38,16 @@
         <div class="left-col">
             <div class="post">
                 <div class="info">
-                    <div class="user">
-                        <div class="profile-pic"><img src="{{ user.profile.profile_picture.url }}"  alt=""></div>
+                        <div class="user">
+                        {% if user.userprofile.profile_picture %}
+                        <div class="profile-pic"><img src="{{ user.profile.profile_picture.url }}" alt=""></div>
+                        {% else %}
+                        <img src="{% static 'images' %}">
+                        {% endif %}
                         <p class="username">{{ user.username }}</p>
                     </div>
                   </div>
-                <img src="{{ image.url }}" class="post-image" alt="">
+                <img src="{{ image.url}}" class="post-image" alt="">
                 <div class="post-content">
                     <div class="reaction-wrapper">
                         <img src="/static/img/like.png" class="icon" alt="">
@@ -67,7 +71,7 @@
         <div class="right-col">
             <div class="profile-card">
                     <div class="profile-pic">
-                    <img src="{{ user.profile.profile_picture.url }}"  alt="">
+                    <img src="{{ user.profile.profile_picture.url }}"   alt="{{image.user.user.username}}">
                 </div>
                 <div>
                     <p class="username">{{ user.username }}</p>

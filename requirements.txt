@@ -15,4 +15,3 @@ pytz==2021.3
 soupsieve==2.2.1
 sqlparse==0.4.2
 whitenoise==5.3.0
-(env) andrew@andre

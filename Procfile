@@ -1,1 +1,1 @@
-web: gunicorn picapp.wsgi --log-file -
+web: gunicorn instacloneapp.wsgi --log-file -

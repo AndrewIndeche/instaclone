@@ -1,3 +1,7 @@
+![Screenshot from 2021-10-22 00-28-47](https://user-images.githubusercontent.com/86969595/138719759-dda2f1fc-e6e3-4f8e-ba6c-3eac45aa9ada.png)
+![Screenshot from 2021-10-25 17-59-15](https://user-images.githubusercontent.com/86969595/138719988-8221d317-4ad6-4732-8cc4-42086ae22fd3.png)
+![Screenshot from 2021-10-25 18-00-29](https://user-images.githubusercontent.com/86969595/138720187-922192a7-de7c-4f51-883d-e05afe606c83.png)
+
 # Gallery App
 The project folder contains a Django App clone of Instagram with basic functions.Update profile pic and bio, view photos.
 

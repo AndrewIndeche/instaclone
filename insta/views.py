@@ -3,15 +3,31 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from .models import Image, Profile, Comment, Follow
 from django.contrib.auth.decorators import login_required
-from .forms import  UpdateUserForm,UpdateUserProfileForm,ImageForm
+from .forms import  UpdateUserForm,UpdateUserProfileForm,UploadPicForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 @login_required(login_url='/accounts/login/')
 def index(request):
-    pictures = Image.objects.all()
-    number = Comment.objects.count()
-    return render(request, 'index.html',{'pictures':pictures, 'number':number})
+    image = Image.objects.all()
+    users = User.objects.exclude(id=request.user.id)
+    if request.method == 'POST':
+        form = UploadPicForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = request.user.profile
+            image.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        form = UploadPicForm()
+    params = {
+        'image': image,
+        'form': form,
+        'users': users,
+
+    }
+    return render(request, 'index.html', params)
 
 @login_required(login_url='/accounts/login')
 def profile(request):
@@ -33,6 +49,7 @@ def profile(request):
 
     }
     return render(request, 'profile.html', params)
+
 @login_required(login_url='login')
 def user_profile(request, username):
     user_prof = get_object_or_404(User, username=username)
@@ -57,7 +74,7 @@ def user_profile(request, username):
     return render(request, 'user_profile.html', params)
 
 @login_required(login_url='/accounts/login/')
-def new_image(request):
+def uploadPic(request):
     current_user = request.user.profile
     if request.method == 'POST':
         form = uploadForm(request.POST, request.FILES)
@@ -65,10 +82,10 @@ def new_image(request):
             image = form.save(commit=False)
             image.profile = current_user
             image.save()
-        return redirect('feed')
+        return redirect('index')
     else:
-        form = PostForm()
-    return render(request, 'new_image.html', {'form':form})
+        form = UploadPicForm()
+    return render(request, 'upload_pic.html', {'form':form})
 
 def like_post(request):
     # image = get_object_or_404(Post, id=request.POST.get('image_id'))

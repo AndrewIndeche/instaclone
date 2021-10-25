@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% load bootstrap4 %}
+<div class="container">
+    <div class="box">
+        <div class="heading"></div>
+      {% if form.errors %}
+      <p> Password or Username is incorrect </p>
+      {% endif %}
+        <form class="login-form" form action="/accounts/login/" method="post">
+          {% csrf_token %}
+          {% bootstrap_form form%}
+          <button class="login-button" button type="submit" title="login" >Log In</button>
+          <input type="hidden" name="next" value="{{next}}">
+            <div class="separator">
+                <div class="line"></div>
+                <p>OR</p>
+                <div class="line"></div>
+            </div>
+            <div class="other">
+                <button class="fb-login-btn" type="button">
+                    <i class="fa fa-facebook-official fb-icon"></i>
+                    <span class="">Log in with Facebook</span>
+                </button>
+                <a class="forgot-password" href="">Forgot password?</a>
+            </div>
+        </form>
+    </div>
+<div class="box">
+<p>Don't have an account? <a class="signup" href="{% url 'signup/' %}">Sign Up</a></p>
+</div>
+ <p class="text-center mt-4">Get the app</p>
+ <div class="row">
+     <div class="col-md-1"></div>
+     <div class="col-md-5 mb-2">
+         <img src="{% static 'images/logo1.png' %}" alt="" width="100%" class="download">
+     </div>
+     <div class="col-md-5 mb-2">
+         <img src="{% static 'images/logo2.png' %}" alt="" width="100%" class="download">
+     </div>
+     <div class="col-md-1"></div>
+ </div>
+</div>
+</body>
+</html>
+{% endblock %}

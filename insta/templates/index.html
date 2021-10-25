@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load bootstrap4 %}
 {% block content %} {{block.super}}
 {% include 'navbar.html' %}
 <section class="main">
@@ -43,19 +42,18 @@
                         <div class="profile-pic"><img src="{{ user.profile.profile_picture.url }}"  alt=""></div>
                         <p class="username">{{ user.username }}</p>
                     </div>
-                    <img src="img/option.PNG" class="options" alt="">
-                </div>
-                <img src="img/cover 1.png" class="post-image" alt="">
+                  </div>
+                <img src="image.url" class="post-image" alt="">
                 <div class="post-content">
                     <div class="reaction-wrapper">
-                        <img src="img/like.PNG" class="icon" alt="">
-                        <img src="img/comment.PNG" class="icon" alt="">
-                        <img src="img/send.PNG" class="icon" alt="">
-                        <img src="img/save.PNG" class="save icon" alt="">
+                        <img src="/static/img/like.png" class="icon" alt="">
+                        <img src="/static/img/comment.png" class="icon" alt="">
+                        <img src="/static/img/send.png" class="icon" alt="">
+                        <img src="/static/img/save.png" class="save icon" alt="">
                     </div>
                     <p class="likes">{{post.comments.count}} likes</p>
                     <p class="description"><span>{{ user.username }}</span>{{ user.username }} </p>
-                    <p class="post-time">2 minutes ago</p>
+                    <p class="post-time">1 minutes ago</p>
                 </div>
                 <div class="comment-wrapper">
                     <img src="img/smile" class="icon" alt="">

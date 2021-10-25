@@ -11,7 +11,7 @@
             <img src="/static/img/nyumba.png" class="icon" alt="">
               </a>
             <img src="/static/img/messe.png" class="icon" alt="">
-            <img src="/static/img/newpost.png" class="icon" data-toggle="modal" data-target="#imageUpload" alt="">
+            <img src="/static/img/newpost.png" class="icon" data-toggle="modal" data-target="#uploadPic" ovalidate enctype="multipart/form-data" alt="">
             <img src="/static/img/explore.png"class="icon" alt="">
             <img src="/static/img/like.png" class="icon" alt="">
             <a href="{% url 'profile' %}">
@@ -20,7 +20,7 @@
         </div>
     </div>
 </nav>
-<div class="modal fade" id="imageUpload" tabindex="-1" role="dialog"
+<div class="modal fade" id="uploadPic" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -33,7 +33,7 @@
                             <div class="modal-body">
                                 <form action="" method="post" enctype="multipart/form-data" novalidate>
                                     {% csrf_token %}
-                                    {{bootstrap_form}}
+                                  {{ form}}
                                     <button class="btn btn-sm btn-success">Upload</button>
                                     <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
                                         Close

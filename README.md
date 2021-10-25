@@ -1,6 +1,6 @@
 # Gallery App
+The project folder contains a Django App clone of Instagram with basic functions.Update profile pic and bio, view photos.
 
-The project folder contains a Django App that is a clone of Instagram that enables functions such as sign-up,log-in,Profile Update,viewing images and liking posts
 
 ## Getting Started
 
@@ -47,7 +47,8 @@ Deployment has been done on Heroku using the requirements.txt packages
 ## Authors
 
 * **Andrew Indeche** - *Final work* 
-
+## ERRORS
+Homepage is not rendering templates for uploaded images.Current work in progress
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

@@ -13,7 +13,7 @@ class SignUpForm(UserCreationForm):
 class commentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        exclude = ['related_post', 'name' ,'created_on']
+        exclude = ['related_post', 'name' ,'created_on','image', 'user']
 
 class UpdateUserForm(forms.ModelForm):
     email = forms.EmailField(max_length=254,help_text=False)

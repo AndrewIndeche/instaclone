@@ -1,30 +1,33 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponseRedirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate,views,forms
 from .models import Image, Profile, Comment, Follow
 from django.contrib.auth.decorators import login_required
-from .forms import  UpdateUserForm,UpdateUserProfileForm,UploadPicForm
+from .forms import  UpdateUserForm,UpdateUserProfileForm,UploadPicForm,commentForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
 @login_required(login_url='/accounts/login/')
 def index(request):
-    images = Image.objects.all()
+    image = Image.objects.all()
+    Form = commentForm
     users = User.objects.exclude(id=request.user.id)
     if request.method == 'POST':
         form = UploadPicForm(request.POST, request.FILES)
         if form.is_valid():
-            images = form.save(commit=False)
-            images.user = request.user.profile
-            imagse.save()
+            image = form.save(commit=False)
+            image.user = request.user.profile
+            image.save()
             return HttpResponseRedirect(request.path_info)
     else:
         form = UploadPicForm()
     params = {
-        'images': images,
+        'image': image,
         'form': form,
         'users': users,
+        'Form':commentForm
 
     }
     return render(request, 'index.html', params)
@@ -125,23 +128,17 @@ def search_profile(request):
     return render(request, 'insta/results.html', {'message': message})
 
 @login_required(login_url='accounts/login')
-def comments(request, id):
-    current_user = request.user.profile
-    post = Image.objects.filter(id=id)
+def comments(request,image_id):
+  commentsForm = CommentsForm()
+  if request.method == 'POST':
+    commentsForm = CommentsForm(request.POST)
+    if commentsForm.is_valid():
+      form = commentsForm.save(commit=False)
+      form.user=request.user
+      form.image = get_object_or_404(Image,pk=image_id)
+      form.save()
 
-    if request.method == 'POST':
-        form = commentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.name = current_user
-            comment.related_post = post
-            comment.save()
-        return redirect('comments')
-    else:
-        form = commentForm()
-
-    maoni = Comment.objects.filter(related_post=id).all()
-    return render(request, 'comments.html', {'maoni':maoni, 'form':form})
+  return redirect('index')
 
 @login_required(login_url='login')
 def unfollow(request, to_unfollow):

@@ -1,5 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'layout.html' %}
 {% load static %}
+{% load bootstrap4 %}
 {% block content %} {{block.super}}
 {% include 'navbar.html' %}
 <section class="main">
@@ -39,15 +40,12 @@
             <div class="post">
                 <div class="info">
                         <div class="user">
-                        {% if user.userprofile.profile_picture %}
                         <div class="profile-pic"><img src="{{ user.profile.profile_picture.url }}" alt=""></div>
-                        {% else %}
-                        <img src="{% static 'images' %}">
-                        {% endif %}
                         <p class="username">{{ user.username }}</p>
                     </div>
                   </div>
-                <img src="{{ image.url}}" class="post-image" alt="">
+                <img src="/static/img/bmw.png" class="post-image" alt="">
+
                 <div class="post-content">
                     <div class="reaction-wrapper">
                         <img src="/static/img/like.png" class="icon" alt="">
@@ -56,14 +54,23 @@
                         <img src="/static/img/save.png" class="save icon" alt="">
                     </div>
                     <p class="likes">{{post.comments.count}} likes</p>
-                    <p class="description"><span>{{ user.username }}</span>{{ user.username }} </p>
+                    {% for item in images %}
+                    <p class="description"><span>{{ item.user.username }}</span>{{ item.user.username }} </p>
                     <p class="post-time">1 minutes ago</p>
-                </div>
-                <div class="comment-wrapper">
-                    <img src="img/smile" class="icon" alt="">
-                    <input type="text" class="comment-box"  placeholder="Add a comment">
-                    <button class="comment-btn">post</button>
-                </div>
+                    {{comments_set.all|length }} Comment(s)
+                    <ul style="list-style-type: none">
+                      {% for comment in item.comment_set.all %}
+                      <li> {{comment.comments}} </li>
+                        {% endfor %}
+                      {% endfor %}
+                  </ul>
+                  </div>
+                <form action="url 'comments' image_id=item.id "  novalidate enctype="multipart/form-data"   method="post">
+                 {% csrf_token %}
+                 {% bootstrap_form Form%}
+                  <button class="comment-btn" input type="submit" value="Post Comment">post</button>
+                  </form>
+
             </div>
             </div>
 <section class="main">
@@ -135,4 +142,3 @@
         </div>
     </div>
 </section>
-{% endblock %}

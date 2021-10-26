@@ -49,13 +49,13 @@ class Comment(models.Model):
     ''' a model for comments'''
     related_post = models.ForeignKey('Image', on_delete=models.CASCADE)
     name = models.ForeignKey('Profile', on_delete=models.CASCADE)
-    comment_body = models.TextField()
+    comments = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['created_on']
 
-    def save_comments(self):
+    def save_comment(self):
         ''' method to save comment instance '''
         self.save()
 
@@ -67,9 +67,12 @@ class Comment(models.Model):
         ''' method to edit a comment '''
         self.comment_body = new_comment
         self.save()
+    @classmethod
+    def get_comments(cls,id):
+        comments = cls.objects.filter(image__id=id)
 
     def __str__(self):
-        return f'Comment by {self.name}'
+        return str(self.comments)
 
 class Image(models.Model):
     image = models.ImageField(upload_to='posts/',null=True, blank=True)
@@ -91,6 +94,12 @@ class Image(models.Model):
 
     def save_image(self):
         self.save()
+
+    def update_image(self):
+        img=Image.objects.filter(id=Image.id).update()
+
+    def update_caption(self):
+        img=Image.objects.filter(id=Image.id).update()
 
     def delete_image(self):
         self.delete()

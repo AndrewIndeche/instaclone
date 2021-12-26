@@ -1,6 +1,10 @@
-# Gallery App
+![Screenshot from 2021-10-22 00-28-47](https://user-images.githubusercontent.com/86969595/138719759-dda2f1fc-e6e3-4f8e-ba6c-3eac45aa9ada.png)
+![Screenshot from 2021-10-25 17-59-15](https://user-images.githubusercontent.com/86969595/138719988-8221d317-4ad6-4732-8cc4-42086ae22fd3.png)
+![Screenshot from 2021-10-25 18-00-29](https://user-images.githubusercontent.com/86969595/138720187-922192a7-de7c-4f51-883d-e05afe606c83.png)
 
-The project folder contains a Django App that is a clone of Instagram that enables functions such as sign-up,log-in,Profile Update,viewing images and liking posts
+# Gallery App
+The project folder contains a Django App clone of Instagram with basic functions.Update profile pic and bio, view photos.
+
 
 ## Getting Started
 
@@ -47,7 +51,8 @@ Deployment has been done on Heroku using the requirements.txt packages
 ## Authors
 
 * **Andrew Indeche** - *Final work* 
-
+## ERRORS
+Homepage is not rendering templates for uploaded images.Current work in progress
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

@@ -81,9 +81,6 @@ img {
     margin-right: 3rem;
 }
 
-.profile-image img {
-    border-radius: 50%;
-}
 
 .profile-user-settings,
 .profile-stats,
@@ -322,7 +319,6 @@ img {
   margin-right:10px;
 }
 .status-card{
-    flex: 0 0 auto;
     width: 80px !important;
     max-width: 80px;
     display: flex;

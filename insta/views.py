@@ -129,16 +129,18 @@ def search_profile(request):
 
 @login_required(login_url='accounts/login')
 def comments(request,image_id):
-  commentsForm = CommentsForm()
-  if request.method == 'POST':
-    commentsForm = CommentsForm(request.POST)
-    if commentsForm.is_valid():
-      form = commentsForm.save(commit=False)
-      form.user=request.user
-      form.image = get_object_or_404(Image,pk=image_id)
-      form.save()
+    current_user = request.user.profile
+    post = Image.objects.filter(id=id)
 
-  return redirect('index')
+    if request.method == 'POST':
+        form = commentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.name = current_user
+            comment.image = get_object_or_404(Image,pk=image_id)
+            comment.related_post = post
+            comment.save()
+        return redirect('index')
 
 @login_required(login_url='login')
 def unfollow(request, to_unfollow):

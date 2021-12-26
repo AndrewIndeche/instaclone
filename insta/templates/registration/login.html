@@ -13,7 +13,7 @@
         <form class="login-form" form action="/accounts/login/" method="post">
           {% csrf_token %}
           {% bootstrap_form form%}
-          <button class="login-button" button type="submit" title="login" >Log In</button>
+          <button class="login-button" button type="submit" title="login">Log In</button>
           <input type="hidden" name="next" value="{{next}}">
             <div class="separator">
                 <div class="line"></div>

@@ -3,13 +3,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profile, Image, Comment
 
-class SignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text=False)
-
-    class Meta:
-        model = User
-        fields = ('email', 'username', 'password1', 'password2')
-
 class commentForm(forms.ModelForm):
     class Meta:
         model = Comment
